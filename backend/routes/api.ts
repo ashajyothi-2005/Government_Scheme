@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
-import { GOVERNMENT_SCHEMES } from '../data/schemes';
-import { OFFICIAL_SOURCES } from '../data/sources';
-import { KNOWLEDGE_CHUNKS } from '../../rag/chunks';
-import { evaluateSchemeEligibility, rankSchemesForUser } from '../eligibility/engine';
-import { retrieveKnowledge } from '../../rag/retriever';
-import { generateGroundedAshaResponse } from '../gemini';
-import { UserProfile, SchemeSource, KnowledgeChunk } from '../../shared/types';
+import { GOVERNMENT_SCHEMES } from '../data/schemes.ts';
+import { OFFICIAL_SOURCES } from '../data/sources.ts';
+import { KNOWLEDGE_CHUNKS } from '../../rag/chunks.ts';
+import { evaluateSchemeEligibility, rankSchemesForUser } from '../eligibility/engine.ts';
+import { retrieveKnowledge } from '../../rag/retriever.ts';
+import { generateGroundedAshaResponse } from '../gemini.ts';
+import { UserProfile, SchemeSource, KnowledgeChunk } from '../../shared/types.ts';
 
 const router = express.Router();
 
