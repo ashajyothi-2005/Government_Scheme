@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div align="center">
 <img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
 </div>
@@ -29,3 +30,6 @@ shared/     TypeScript contracts shared by frontend and backend
 ```
 
 The root `index.html`, `vite.config.ts`, and `package.json` provide the application entrypoint and build tooling. Use `npm run lint` for type checking and `npm run build` for a production build.
+=======
+# Government_Scheme
+>>>>>>> 868b8f55be1eacee57ceefcbb60c4edd5ac571ac
