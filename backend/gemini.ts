@@ -1,7 +1,7 @@
 import { GoogleGenAI } from '@google/genai';
 import Groq from 'groq-sdk';
-import { RetrievalResult } from '../rag/retriever';
-import { UserProfile } from '../shared/types';
+import { RetrievalResult } from '../rag/retriever.ts';
+import { UserProfile } from '../shared/types.ts';
 
 let aiClient: GoogleGenAI | null = null;
 let groqClient: Groq | null = null;
