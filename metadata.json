@@ -1,0 +1,6 @@
+{
+  "name": "SchemeSahay",
+  "description": "AI-Powered Indian Government Scheme Discovery, Eligibility & Multilingual Voice Assistant (Asha AI) grounded in official government sources.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
