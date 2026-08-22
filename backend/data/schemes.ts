@@ -1,4 +1,4 @@
-import { GovernmentScheme } from '../../shared/types';
+import { GovernmentScheme } from '../../shared/types.ts';
 
 export const GOVERNMENT_SCHEMES: GovernmentScheme[] = [
   {
