@@ -5,7 +5,7 @@ import { KNOWLEDGE_CHUNKS } from '../../rag/chunks.ts';
 import { evaluateSchemeEligibility, rankSchemesForUser } from '../eligibility/engine.ts';
 import { retrieveKnowledge } from '../../rag/retriever.ts';
 import { generateGroundedAshaResponse } from '../gemini.ts';
-import { UserProfile, SchemeSource, KnowledgeChunk } from '../../shared/types.ts';
+import type { UserProfile, SchemeSource, KnowledgeChunk } from '../../shared/types.ts';
 
 const router = express.Router();
 
