@@ -1,4 +1,4 @@
-import { KnowledgeChunk, SchemeSource } from '../shared/types.ts';
+import type { KnowledgeChunk, SchemeSource } from '../shared/types.ts';
 import { KNOWLEDGE_CHUNKS } from './chunks.ts';
 import { OFFICIAL_SOURCES } from '../backend/data/sources.ts';
 import { LocalVectorStore } from './vectorStore.ts';

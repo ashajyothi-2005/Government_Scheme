@@ -1,4 +1,4 @@
-import { KnowledgeChunk } from '../shared/types.ts';
+import type { KnowledgeChunk } from '../shared/types.ts';
 
 export const KNOWLEDGE_CHUNKS: KnowledgeChunk[] = [
   {
