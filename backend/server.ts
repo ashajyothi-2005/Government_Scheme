@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import  { createServer as createViteServer } from 'vite';
+import { createServer as createViteServer } from 'vite';
 import dotenv from 'dotenv';
 import apiRouter from './routes/api.ts';
 
@@ -8,7 +8,7 @@ dotenv.config();
 
 async function startServer() {
   const app = express();
-  const PORT = Number(process.env.PORT) || 3000;
+  const PORT = Number(process.env.PORT) || 10000;
 
   // Middleware
   app.use(express.json({ limit: '10mb' }));
@@ -30,7 +30,8 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), 'dist');
+    // Corrected path to root-level 'dist' folder where frontend assets build
+    const distPath = path.resolve(process.cwd(), 'dist');
     app.use(express.static(distPath));
     app.get('*', (_req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
@@ -38,10 +39,11 @@ async function startServer() {
   }
 
   const listen = (port: number) => {
-    const server = app.listen(port, 'localhost', () => {
+    // Bound to '0.0.0.0' for proper cloud deployment on Render
+    const server = app.listen(port, '0.0.0.0', () => {
       const address = server.address();
       const activePort = typeof address === 'object' && address ? address.port : port;
-      console.log(`🇮🇳 SchemeSahay server running on http://localhost:${activePort}`);
+      console.log(`🇮🇳 SchemeSahay server running on http://0.0.0.0:${activePort}`);
     });
     server.once('error', (error: NodeJS.ErrnoException) => {
       if (error.code === 'EADDRINUSE' && port === PORT) {
