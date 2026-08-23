@@ -1,13 +1,11 @@
 <<<<<<< HEAD
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+
 
 # SchemeSahay
 
 SchemeSahay is an AI-assisted Indian government scheme discovery platform with source-grounded answers, deterministic eligibility checks, multilingual support, and voice assistance.
 
-View your app in AI Studio: https://ai.studio/apps/3cf46091-fc09-4cfe-b017-5a0348142274
+
 
 ## Run Locally
 
