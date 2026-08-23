@@ -1,4 +1,4 @@
-import { GovernmentScheme, UserProfile, EligibilityResult, CriterionEvaluation, SchemeCriterion } from '../../shared/types.ts';
+import type { GovernmentScheme, UserProfile, EligibilityResult, CriterionEvaluation, SchemeCriterion } from '../../shared/types.ts';
 
 export function evaluateCriterion(criterion: SchemeCriterion, profile: Partial<UserProfile>): CriterionEvaluation {
   const userValue = profile[criterion.field as keyof UserProfile];
