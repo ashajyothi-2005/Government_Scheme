@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import dotenv from 'dotenv';
+import fs from 'fs';
 import apiRouter from './routes/api.ts';
 
 dotenv.config();
@@ -22,16 +23,18 @@ async function startServer() {
   // Mount API router
   app.use('/api', apiRouter);
 
-  // Vite middleware in dev or static files in production
-  if (process.env.NODE_ENV !== 'production') {
+  // Check if dist folder exists (forces production static mode if built)
+  const distPath = path.resolve(process.cwd(), 'dist');
+  const isProduction = process.env.NODE_ENV === 'production' || fs.existsSync(distPath);
+
+  if (!isProduction) {
     const vite = await createViteServer({
       server: { middlewareMode: true, host: 'localhost', hmr: false },
       appType: 'spa',
     });
     app.use(vite.middlewares);
   } else {
-    // Corrected path to root-level 'dist' folder where frontend assets build
-    const distPath = path.resolve(process.cwd(), 'dist');
+    // Serve static frontend files from dist folder
     app.use(express.static(distPath));
     app.get('*', (_req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
@@ -39,7 +42,6 @@ async function startServer() {
   }
 
   const listen = (port: number) => {
-    // Bound to '0.0.0.0' for proper cloud deployment on Render
     const server = app.listen(port, '0.0.0.0', () => {
       const address = server.address();
       const activePort = typeof address === 'object' && address ? address.port : port;
