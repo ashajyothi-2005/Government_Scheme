@@ -1,4 +1,5 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import type { Request, Response } from 'express';
 import { GOVERNMENT_SCHEMES } from '../data/schemes.ts';
 import { OFFICIAL_SOURCES } from '../data/sources.ts';
 import { KNOWLEDGE_CHUNKS } from '../../rag/chunks.ts';
