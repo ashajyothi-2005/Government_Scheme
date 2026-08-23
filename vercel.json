@@ -1,13 +1,20 @@
 {
-  "version": 2,
+  "services": {
+    "frontend": {
+      "root": "."
+    },
+    "backend": {
+      "root": "backend"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/dist/server.cjs"
+      "destination": { "service": "backend" }
     },
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": { "service": "frontend" }
     }
   ]
 }
