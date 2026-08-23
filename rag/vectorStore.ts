@@ -1,4 +1,4 @@
-import { KnowledgeChunk } from '../shared/types.ts';
+import type { KnowledgeChunk } from '../shared/types.ts';
 import { cosineSimilarity, createEmbedding } from './embeddings.ts';
 
 export interface VectorRecord {
