@@ -1,4 +1,4 @@
-import { SchemeSource } from '../../shared/types.ts';
+import type { SchemeSource } from '../../shared/types.ts';
 
 export const OFFICIAL_SOURCES: SchemeSource[] = [
   {
