@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 
 # SchemeSahay
@@ -14,7 +14,7 @@ SchemeSahay is an AI-assisted Indian government scheme discovery platform with s
 
 1. Install dependencies:
    `npm install`
-2. Set `GEMINI_API_KEY` or `GROQ_API_KEY` in `.env` for AI responses. The app includes an offline fallback when no key is available.
+2. Set `GROQ_API_KEY` in `.env` for AI responses. The app includes an offline fallback when no key is available.
 3. Run the app:
    `npm run dev`
 
