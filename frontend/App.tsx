@@ -63,11 +63,13 @@ export function AppContent() {
   const [activeSources, setActiveSources] = useState<any[]>([]);
   const [evaluatedResult, setEvaluatedResult] = useState<EligibilityResult | null>(null);
   const [eligibilityError, setEligibilityError] = useState('');
+  const [schemeLoadError, setSchemeLoadError] = useState('');
 
   // Fetch schemes based on current filters
   useEffect(() => {
     async function loadSchemes() {
       setLoading(true);
+      setSchemeLoadError('');
       try {
         const res: any = await api.getSchemes({
           category: selectedCategory,
@@ -82,6 +84,8 @@ export function AppContent() {
         setSchemes(list);
       } catch (err) {
         console.error('Failed to load schemes:', err);
+        setSchemes([]);
+        setSchemeLoadError('We could not load schemes right now. Please try your search again.');
       } finally {
         setLoading(false);
       }
@@ -152,7 +156,7 @@ export function AppContent() {
             <CategoryGrid schemeCounts={schemeCounts} />
 
             {/* Schemes Explorer Section */}
-            <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <section id="scheme-results" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 scroll-mt-24">
               {/* Filter Controls Toolbar */}
               <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-xs mb-8 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
                 <div className="flex flex-wrap items-center gap-3">
@@ -211,7 +215,8 @@ export function AppContent() {
                 {/* Right Counts & Clear Trigger */}
                 <div className="flex items-center justify-between lg:justify-end gap-3 text-xs">
                   <span className="font-bold text-slate-700">
-                    Showing <strong className="text-amber-700">{schemes.length}</strong> verified schemes
+                    {searchQuery ? <>Results for <strong className="text-amber-700">“{searchQuery}”</strong>: </> : null}
+                    <strong className="text-amber-700">{schemes.length}</strong> verified schemes
                   </span>
 
                   {hasActiveFilters && (
@@ -258,6 +263,11 @@ export function AppContent() {
               )}
 
               {/* Schemes Grid */}
+              {schemeLoadError && (
+                <div role="alert" className="mb-5 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs font-semibold text-rose-800">
+                  {schemeLoadError}
+                </div>
+              )}
               {eligibilityError && (
                 <div role="alert" className="mb-5 flex items-center justify-between gap-4 rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs text-rose-800">
                   <span>{eligibilityError}</span>

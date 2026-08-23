@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { useLanguage } from '../i18n/LanguageContext';
 import { Search, Mic, Sparkles, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export const Hero: React.FC = () => {
-  const { setSearchQuery, searchQuery, setIsProfileWizardOpen, setIsVoiceModalOpen, setSelectedCategory } = useApp();
+  const { setSearchQuery, searchQuery, setIsProfileWizardOpen, setIsVoiceModalOpen, setSelectedCategory, setActiveTab } = useApp();
   const { t } = useLanguage();
   const [localInput, setLocalInput] = useState(searchQuery);
 
+  useEffect(() => {
+    setLocalInput(searchQuery);
+  }, [searchQuery]);
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSearchQuery(localInput);
+    const query = localInput.trim();
+    setSearchQuery(query);
+    setActiveTab('explore');
+    window.setTimeout(() => document.getElementById('scheme-results')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
   };
 
   const handleQuickTagClick = (tag: string, catId?: string) => {
